@@ -1,11 +1,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import express from 'express';
+import path from 'path';
 
 const app = express();
 const PORT = 3000;
 
 app.get('/', (req, res) => {
-  res.send('Tic Tac Toe');
+  res.sendFile(path.join(__dirname, 'src/html/index.html'));
 });
 
 app.listen(PORT, () => {
