@@ -26,3 +26,10 @@ body {
     text-align: center;
     font-weight: normal;
 }
+
+.app-version {
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding-right: 1.5rem;
+}
