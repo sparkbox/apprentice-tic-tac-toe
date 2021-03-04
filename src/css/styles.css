@@ -1,3 +1,7 @@
+:root {
+    --cell-size: 20vmin;
+}
+
 body {
     margin-top: 0;
     margin-left: 0;
@@ -27,9 +31,39 @@ body {
     font-weight: normal;
 }
 
+.game-grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+ }
+
+ .grid-cell {
+    border: 1px solid #aaa;
+    height: var(--cell-size);
+    width: var(--cell-size);
+    text-align: center;
+    line-height: var(--cell-size);
+  }
+
 .app-version {
     position:absolute;
     bottom:0;
     right:0;
     padding-right: 1.5rem;
+}
+
+.util-no-top-border {
+    border-top: 0px;
+}
+
+.util-no-bottom-border {
+    border-bottom: 0px;
+}
+
+.util-no-right-border {
+    border-right: 0px;
+}
+
+.util-no-left-border {
+    border-left: 0px;
 }
