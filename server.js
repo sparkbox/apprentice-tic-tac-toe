@@ -11,6 +11,12 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src/html/index.html'));
 });
 
+app.use((req, res) => {
+  res
+    .status(404)
+    .sendFile(path.join(__dirname, 'src/html/404.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });
