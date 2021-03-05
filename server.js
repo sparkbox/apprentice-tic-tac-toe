@@ -6,7 +6,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, 'src/css')));
-
+app.use(express.static(path.join(__dirname, 'src/js')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src/html/index.html'));
 });
