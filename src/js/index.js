@@ -1,4 +1,5 @@
 console.debug('Welcome to Tic Tac Toe!');
+
 function handleClickCell(cell) { // 68
   // eslint-disable-next-line no-param-reassign
   cell.innerText = 'X'; // 68
