@@ -4,10 +4,7 @@ import handleClickCell from './index';
 const { JSDOM } = jsdom;
 
 describe('index.js tests will go here', () => {
-  it('expects first test to equal 1', () => {
-    const firstTest = 1;
-    expect(firstTest).toBe(1);
-  });
+  it.todo('expects first test to equal 1');
 });
 
 describe('replacing text in the paragraph tag', () => {
