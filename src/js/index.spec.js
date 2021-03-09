@@ -26,11 +26,17 @@ describe('replacing text in the paragraph tag', () => {
 describe('Handle click cell function', () => {
   // As there are multiple grid cell elements, this will only select the first one.
   const gridCell = dom.window.document.querySelector('.grid-cell');
+  const allGameCells = dom.window.document.querySelectorAll('.grid-cell');
   it('Shows an empty grid cell before any choices have been made', () => {
     expect(gridCell.textContent).toBe('');
   });
   it('Marks a grid cell with an "x"', () => {
     handleClickCell(gridCell);
     expect(gridCell.innerText).toBe('X');
+  });
+  it('Marks all grid cells with an "x"', () => {
+    allGameCells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell); }));
+    allGameCells.forEach((cell) => cell.click());
+    allGameCells.forEach((cell) => expect(cell.innerText).toBe('X'));
   });
 });
