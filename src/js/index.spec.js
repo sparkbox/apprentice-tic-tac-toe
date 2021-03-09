@@ -29,4 +29,8 @@ describe('Handle click cell function', () => {
   it('Shows an empty grid cell before any choices have been made', () => {
     expect(gridCell.textContent).toBe('');
   });
+  it('Marks a grid cell with an "x"', () => {
+    handleClickCell(gridCell);
+    expect(gridCell.innerText).toBe('X');
+  });
 });
