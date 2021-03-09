@@ -3,10 +3,6 @@ import handleClickCell from './index';
 
 const { JSDOM } = jsdom;
 
-describe('index.js tests will go here', () => {
-  it.todo('expects first test to equal 1');
-});
-
 describe('replacing text in the paragraph tag', () => {
   const testDom = new JSDOM('<doctype html><p>Hello, world</p>');
   const testDomParagraph = testDom.window.document.querySelector('p');
