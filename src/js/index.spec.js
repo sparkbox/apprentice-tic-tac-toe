@@ -3,14 +3,6 @@ import handleClickCell from './index';
 
 const { JSDOM } = jsdom;
 
-describe('replacing text in the paragraph tag', () => {
-  const testDom = new JSDOM('<doctype html><p>Hello, world</p>');
-  const testDomParagraph = testDom.window.document.querySelector('p');
-  it('expects the paragraph to have a value of "Hello, world"', () => {
-    expect(testDomParagraph.textContent).toBe('Hello, world');
-  });
-});
-
 describe('Handle click cell function', () => {
   const gridGame = new JSDOM(`<div class="game-grid">
     <div class="grid-cell util-no-top-border util-no-left-border"></div>
