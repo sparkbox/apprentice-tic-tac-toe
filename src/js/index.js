@@ -1,11 +1,15 @@
 console.debug('Welcome to Tic Tac Toe!');
 
-function handleClickCell(cell) {
+// eslint-disable-next-line import/no-mutable-exports
+export let state = {
+  currentTurn: 'X',
+};
+
+export function handleClickCell(cell) { // 68
   // eslint-disable-next-line no-param-reassign
-  cell.innerText = 'X';
+  cell.innerText = state.currentTurn;
+  state = { currentTurn: state.currentTurn === 'X' ? 'O' : 'X' };
 }
 // eslint-disable-next-line no-undef
 const allGameCells = document.querySelectorAll('.grid-cell');
 allGameCells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell); }));
-
-export default handleClickCell;
