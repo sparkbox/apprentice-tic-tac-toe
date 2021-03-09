@@ -22,3 +22,11 @@ describe('replacing text in the paragraph tag', () => {
     expect(testDomParagraph.textContent).toBe('Hello, world');
   });
 });
+
+describe('Handle click cell function', () => {
+  // As there are multiple grid cell elements, this will only select the first one.
+  const gridCell = dom.window.document.querySelector('.grid-cell');
+  it('Shows an empty grid cell before any choices have been made', () => {
+    expect(gridCell.textContent).toBe('');
+  });
+});
