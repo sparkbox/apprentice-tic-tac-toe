@@ -19,6 +19,7 @@ describe('Handle click cell function', () => {
   // As there are multiple grid cell elements, this will only select the first one.
   const gridCell = gridGame.window.document.querySelector('.grid-cell');
   const allGameCells = gridGame.window.document.querySelectorAll('.grid-cell');
+  allGameCells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell); }));
   it('Shows an empty grid cell before any choices have been made', () => {
     expect(gridCell.textContent).toBe('');
   });
@@ -27,7 +28,6 @@ describe('Handle click cell function', () => {
     expect(gridCell.innerText).toBe('X');
   });
   it('Marks all grid cells with an "x"', () => {
-    allGameCells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell); }));
     allGameCells.forEach((cell) => cell.click());
     allGameCells.forEach((cell) => expect(cell.innerText).toBe('X'));
   });
