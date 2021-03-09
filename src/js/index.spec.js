@@ -1,12 +1,7 @@
 import jsdom from 'jsdom';
-import fs from 'fs';
 import handleClickCell from './index';
 
 const { JSDOM } = jsdom;
-
-const indexHtmlFile = fs.readFileSync('./src/html/index.html').toString();
-
-const dom = new JSDOM(indexHtmlFile);
 
 describe('index.js tests will go here', () => {
   it('expects first test to equal 1', () => {
@@ -24,9 +19,21 @@ describe('replacing text in the paragraph tag', () => {
 });
 
 describe('Handle click cell function', () => {
+  const gridGame = new JSDOM(`<div class="game-grid">
+    <div class="grid-cell util-no-top-border util-no-left-border"></div>
+    <div class="grid-cell util-no-top-border"></div>
+    <div class="grid-cell util-no-top-border util-no-right-border"></div>
+    <div class="grid-cell util-no-left-border"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell util-no-right-border"></div>
+    <div class="grid-cell util-no-bottom-border util-no-left-border"></div>
+    <div class="grid-cell util-no-bottom-border"></div>
+    <div class="grid-cell util-no-bottom-border util-no-right-border"></div>
+  </div>
+`);
   // As there are multiple grid cell elements, this will only select the first one.
-  const gridCell = dom.window.document.querySelector('.grid-cell');
-  const allGameCells = dom.window.document.querySelectorAll('.grid-cell');
+  const gridCell = gridGame.window.document.querySelector('.grid-cell');
+  const allGameCells = gridGame.window.document.querySelectorAll('.grid-cell');
   it('Shows an empty grid cell before any choices have been made', () => {
     expect(gridCell.textContent).toBe('');
   });
