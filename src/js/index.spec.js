@@ -1,5 +1,5 @@
 import jsdom from 'jsdom';
-import { handleClickCell, state } from './index';
+import { handleClickCell, game } from './Game/game';
 
 const { JSDOM } = jsdom;
 
@@ -27,7 +27,7 @@ describe('Handle click cell function', () => {
       // eslint-disable-next-line no-param-reassign
       cell.innerText = '';
     });
-    state.currentTurn = 'X';
+    game.state.currentPlayer = 'X';
   });
   it('Shows an empty grid cell before any choices have been made', () => {
     expect(gridCell.textContent).toBe('');
