@@ -21,6 +21,24 @@ class Game {
     gameBoard[cellIndex] = this.currentPlayer;
   }
 
+  findWinner() {
+    // Find all the positions that are occupied by the current player
+    const getOccupiedIndexes = () => {
+      let i = 0;
+      const occupiedIndexes = [];
+      while (i < 9) {
+        const foundIndex = gameBoard.indexOf(this.currentPlayer, i);
+        if (foundIndex !== -1) {
+          if (occupiedIndexes[occupiedIndexes.length - 1] !== foundIndex) {
+            occupiedIndexes.push(foundIndex);
+          }
+        }
+        i += 1;
+      }
+      return occupiedIndexes;
+    };
+  }
+
   nextPlayer() {
     const result = this.currentPlayer === 'X' ? 'O' : 'X';
     this.currentPlayer = result;
@@ -35,6 +53,7 @@ export function handleClickCell(cell) { // 68
     cell.innerText = game.currentPlayer;
   } else {
     game.markBoard(cell);
+    game.findWinner();
   }
   game.nextPlayer();
 }
