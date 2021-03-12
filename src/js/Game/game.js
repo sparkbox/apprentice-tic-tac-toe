@@ -6,6 +6,10 @@ class Game {
     this.winner = null;
   }
 
+  markBoard(cellIndex) {
+    gameBoard[cellIndex] = this.currentPlayer;
+  }
+
   nextPlayer() {
     const result = this.currentPlayer === 'X' ? 'O' : 'X';
     this.currentPlayer = result;
@@ -15,7 +19,11 @@ class Game {
 export const game = new Game();
 
 export function handleClickCell(cell) { // 68
-  // eslint-disable-next-line no-param-reassign
-  cell.innerText = game.currentPlayer;
+  if (cell.className !== undefined) {
+    // eslint-disable-next-line no-param-reassign
+    cell.innerText = game.currentPlayer;
+  } else {
+    game.markBoard(cell);
+  }
   game.nextPlayer();
 }

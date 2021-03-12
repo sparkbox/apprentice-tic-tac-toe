@@ -56,6 +56,7 @@ describe('Toggling between Xs and Os', () => {
   </div>
 `);
   // As there are multiple grid cell elements, this will only select the first one.
+  game.currentPlayer = 'X';
   const allGameCells = gridGame.window.document.querySelectorAll('.grid-cell');
   allGameCells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell); }));
   // The following for loop will go through and click each cell in the game grid.
