@@ -82,6 +82,9 @@ describe('Mark cells without using the DOM', () => {
     game.currentPlayer = 'X';
     gameBoard.forEach(() => null);
   });
-  it.todo('Marks one cell with an X');
+  it('Marks one cell with an X', () => {
+    handleClickCell(0);
+    expect(gameBoard[0]).toBe('X');
+  });
   it.todo('Toggles between Xs and Os for an entire board');
 });
