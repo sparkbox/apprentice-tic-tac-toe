@@ -40,6 +40,13 @@ describe('Handle click cell function', () => {
     gridCell.click();
     expect(gridCell.innerText).toBe('X');
   });
+  it('Does not mark a grid that has been marked already', () => {
+    gridCell.click();
+    const click1 = gridCell;
+    gridCell.click();
+    const click2 = gridCell;
+    expect(click1.innerText).toBe(click2.innerText);
+  });
 });
 
 describe('Toggling between Xs and Os', () => {

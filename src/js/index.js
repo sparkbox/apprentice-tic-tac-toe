@@ -6,6 +6,7 @@ export let state = {
 };
 
 export function handleClickCell(cell) { // 68
+  if (cell.innerText) return;
   // eslint-disable-next-line no-param-reassign
   cell.innerText = state.currentTurn;
   state = { currentTurn: state.currentTurn === 'X' ? 'O' : 'X' };
