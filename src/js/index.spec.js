@@ -27,7 +27,7 @@ describe('Handle click cell function', () => {
       // eslint-disable-next-line no-param-reassign
       cell.innerText = '';
     });
-    game.state.currentPlayer = 'X';
+    game.currentPlayer = 'X';
   });
   it('Shows an empty grid cell before any choices have been made', () => {
     expect(gridCell.textContent).toBe('');
