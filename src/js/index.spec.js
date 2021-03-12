@@ -1,9 +1,13 @@
 import jsdom from 'jsdom';
-import { handleClickCell, state } from './index';
+import handleClickCell from './Game/game';
 
 const { JSDOM } = jsdom;
 
 describe('Handle click cell function', () => {
+  const state = {
+    currentPlayer: 'X',
+  };
+
   const gridGame = new JSDOM(`<div class="game-grid">
     <div class="grid-cell util-no-top-border util-no-left-border"></div>
     <div class="grid-cell util-no-top-border"></div>
