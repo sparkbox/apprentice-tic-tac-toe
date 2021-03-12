@@ -1,4 +1,4 @@
-const gameBoard = new Array(9).fill(null);
+export const gameBoard = new Array(9).fill(null);
 
 const winningPositions = [
   [0, 1, 2],

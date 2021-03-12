@@ -1,5 +1,5 @@
 import jsdom from 'jsdom';
-import { handleClickCell, game } from './Game/game';
+import { handleClickCell, game, gameBoard } from './Game/game';
 
 const { JSDOM } = jsdom;
 
@@ -75,4 +75,13 @@ describe('Toggling between Xs and Os', () => {
       });
     }
   }
+});
+
+describe('Mark cells without using the DOM', () => {
+  afterEach(() => {
+    game.currentPlayer = 'X';
+    gameBoard.forEach(() => null);
+  });
+  it.todo('Marks one cell with an X');
+  it.todo('Toggles between Xs and Os for an entire board');
 });
