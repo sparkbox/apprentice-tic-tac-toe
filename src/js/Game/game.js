@@ -1,21 +1,19 @@
-const gameState = {
-  currentPlayer: 'X',
-};
-
 class Game {
-  constructor(state) {
-    this.state = state;
+  constructor() {
+    this.currentPlayer = 'X';
+    this.winner = null;
   }
 
   nextPlayer() {
-    this.state = { currentPlayer: this.state.currentPlayer === 'X' ? 'O' : 'X' };
+    const result = this.currentPlayer === 'X' ? 'O' : 'X';
+    this.currentPlayer = result;
   }
 }
 
-export const game = new Game(gameState);
+export const game = new Game();
 
 export function handleClickCell(cell) { // 68
   // eslint-disable-next-line no-param-reassign
-  cell.innerText = game.state.currentPlayer;
+  cell.innerText = game.currentPlayer;
   game.nextPlayer();
 }
