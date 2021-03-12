@@ -2,7 +2,7 @@ class Game {
   constructor() {
     this.currentPlayer = 'X';
     this.winner = null;
-    this.board = new Array(9).fill(null);
+    this.board = new Array(9).fill(null); // But should this be here?
   }
 
   markSpace(index) {
@@ -24,7 +24,7 @@ export function handleClickCell(cell, index) { // 68
   console.log(index);
   console.log(cell);
   // eslint-disable-next-line no-param-reassign
-  cell.innerText = game.currentPlayer;
-  game.markSpace(index);
+  cell.innerText = game.currentPlayer; // this part manipulates the dom
+  game.markSpace(index); // this part manipulates the model
   game.nextPlayer();
 }
