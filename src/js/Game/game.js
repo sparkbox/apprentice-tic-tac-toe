@@ -1,3 +1,5 @@
+const board = new Array(9).fill(null);
+
 class Game {
   constructor() {
     this.currentPlayer = 'X';
