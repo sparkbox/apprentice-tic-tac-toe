@@ -1,4 +1,3 @@
-console.log('in game')
 const gameState = {
   currentPlayer: 'X',
 };
@@ -9,7 +8,7 @@ class Game {
   }
 
   nextPlayer() {
-    this.state = { currentPlayer: this.state.currentPlayer === 'X' ? 'O' : 'X' }
+    this.state = { currentPlayer: this.state.currentPlayer === 'X' ? 'O' : 'X' };
   }
 }
 
