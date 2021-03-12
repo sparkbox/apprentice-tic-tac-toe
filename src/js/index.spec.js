@@ -24,6 +24,7 @@ describe('Handle click cell function', () => {
   const gridCell = gridGame.window.document.querySelector('.grid-cell');
   const allGameCells = gridGame.window.document.querySelectorAll('.grid-cell');
   beforeEach(() => {
+    state.currentTurn = 'X';
     allGameCells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell); }));
   });
   afterEach(() => {
@@ -31,7 +32,6 @@ describe('Handle click cell function', () => {
       // eslint-disable-next-line no-param-reassign
       cell.innerText = '';
     });
-    state.currentTurn = 'X';
   });
   it('Shows an empty grid cell before any choices have been made', () => {
     expect(gridCell.textContent).toBe('');
