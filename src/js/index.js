@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/extensions
-import handleClickCell from './Game/game.js';
+import { handleClickCell } from './Game/game.js';
 
 console.debug('Welcome to Tic Tac Toe!');
 

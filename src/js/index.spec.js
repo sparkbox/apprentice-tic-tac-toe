@@ -1,13 +1,9 @@
 import jsdom from 'jsdom';
-import handleClickCell from './Game/game';
+import { handleClickCell, game } from './Game/game';
 
 const { JSDOM } = jsdom;
 
 describe('Handle click cell function', () => {
-  const state = {
-    currentPlayer: 'X',
-  };
-
   const gridGame = new JSDOM(`<div class="game-grid">
     <div class="grid-cell util-no-top-border util-no-left-border"></div>
     <div class="grid-cell util-no-top-border"></div>
@@ -24,7 +20,6 @@ describe('Handle click cell function', () => {
   const gridCell = gridGame.window.document.querySelector('.grid-cell');
   const allGameCells = gridGame.window.document.querySelectorAll('.grid-cell');
   beforeEach(() => {
-    state.currentTurn = 'X';
     allGameCells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell); }));
   });
   afterEach(() => {
@@ -32,6 +27,7 @@ describe('Handle click cell function', () => {
       // eslint-disable-next-line no-param-reassign
       cell.innerText = '';
     });
+    game.state.currentPlayer = 'X';
   });
   it('Shows an empty grid cell before any choices have been made', () => {
     expect(gridCell.textContent).toBe('');

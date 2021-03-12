@@ -12,9 +12,9 @@ class Game {
   }
 }
 
-const game = new Game(gameState);
+export const game = new Game(gameState);
 
-export default function handleClickCell(cell) { // 68
+export function handleClickCell(cell) { // 68
   // eslint-disable-next-line no-param-reassign
   cell.innerText = game.state.currentPlayer;
   game.nextPlayer();
