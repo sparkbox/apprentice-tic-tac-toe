@@ -86,5 +86,8 @@ describe('Mark cells without using the DOM', () => {
     handleClickCell(0);
     expect(gameBoard[0]).toBe('X');
   });
-  it.todo('Toggles between Xs and Os for an entire board');
+  it('Toggles between Xs and Os for an entire board', () => {
+    gameBoard.forEach((value, index) => { handleClickCell(index); });
+    gameBoard.forEach((value, index) => (index % 2 === 0 ? expect(value).toBe('X') : expect(value).toBe('O')));
+  });
 });
