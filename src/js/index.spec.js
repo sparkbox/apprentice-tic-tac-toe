@@ -140,3 +140,17 @@ describe('Confirm that winning positions can be detected', () => {
     expect(game.winningPosition).toBe(5);
   });
 });
+
+describe('Correctly find game winners', () => {
+  afterEach(() => {
+    game.currentPlayer = 'X';
+    gameBoard.fill(null);
+    game.occupiedIndexes = null;
+    game.winningPosition = null;
+    game.winner = null;
+  });
+  it('Shows the winning combination and the winner', () => {
+    expect(game.winningPosition).toBe(5);
+    expect(game.winner).toBe('O');
+  });
+});
