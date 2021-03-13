@@ -106,7 +106,14 @@ describe('Mark cells without using the DOM', () => {
       handleClickCell(2);
       expect(game.occupiedIndexes).toEqual([2]);
     });
-    it.todo('Shows all indexes of cells marked with an X will have their indexes recorded');
-    it.todo('Shows all indexes of cells marked with an O will have their indexes recorded');
+    it('Shows all indexes of cells marked with an X will have their indexes recorded', () => {
+      handleClickCell(1);
+      expect(game.occupiedIndexes).toEqual([0, 1]);
+    });
+    it('Shows all indexes of cells marked with an O will have their indexes recorded', () => {
+      game.currentPlayer = 'O';
+      handleClickCell(5);
+      expect(game.occupiedIndexes).toEqual([2, 5]);
+    });
   });
 });
