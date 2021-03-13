@@ -134,5 +134,9 @@ describe('Confirm that winning positions can be detected', () => {
     handleClickCell(6);
     expect(game.winningPosition).toBe(null);
   });
-  it.todo('Shows that a winning position will return its index in the winning positions array');
+  it('Shows that a winning position will return its index in the winning positions array', () => {
+    handleClickCell(1);
+    handleClickCell(8);
+    expect(game.winningPosition).toBe(5);
+  });
 });
