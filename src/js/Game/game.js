@@ -37,6 +37,7 @@ class Game {
       }
       return occupiedIndexes;
     };
+    this.occupiedIndexes = getOccupiedIndexes();
   }
 
   nextPlayer() {
