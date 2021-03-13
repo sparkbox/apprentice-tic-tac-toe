@@ -26,17 +26,12 @@ class Game {
   findWinner() {
     // Find all the positions that are occupied by the current player
     const getOccupiedIndexes = (player) => {
-      let i = 0;
       const occupiedIndexes = [];
-      while (i < 9) {
-        const foundIndex = gameBoard.indexOf(player, i);
-        if (foundIndex !== -1) {
-          if (occupiedIndexes[occupiedIndexes.length - 1] !== foundIndex) {
-            occupiedIndexes.push(foundIndex);
-          }
+      gameBoard.forEach((value, index) => {
+        if (value === player) {
+          occupiedIndexes.push(index);
         }
-        i += 1;
-      }
+      });
       return occupiedIndexes;
     };
     this.occupiedIndexes = getOccupiedIndexes(this.currentPlayer);
