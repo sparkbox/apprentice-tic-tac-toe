@@ -90,30 +90,30 @@ describe('Mark cells without using the DOM', () => {
     gameBoard.forEach((value, index) => { handleClickCell(index); });
     gameBoard.forEach((value, index) => (index % 2 === 0 ? expect(value).toBe('X') : expect(value).toBe('O')));
   });
+});
 
-  describe('Confirm marked cells are tracked in the occupied indexes property', () => {
-    beforeAll(() => {
-      game.currentPlayer = 'X';
-      gameBoard.fill(null);
-      game.occupiedIndexes = null;
-    });
-    it('Shows that the index of a cell marked with an X will have its index recorded', () => {
-      handleClickCell(0);
-      expect(game.occupiedIndexes).toEqual([0]);
-    });
-    it('Shows that the index of a cell marked with an O will have its index recorded', () => {
-      game.currentPlayer = 'O';
-      handleClickCell(2);
-      expect(game.occupiedIndexes).toEqual([2]);
-    });
-    it('Shows all indexes of cells marked with an X will have their indexes recorded', () => {
-      handleClickCell(1);
-      expect(game.occupiedIndexes).toEqual([0, 1]);
-    });
-    it('Shows all indexes of cells marked with an O will have their indexes recorded', () => {
-      game.currentPlayer = 'O';
-      handleClickCell(5);
-      expect(game.occupiedIndexes).toEqual([2, 5]);
-    });
+describe('Confirm marked cells are tracked in the occupied indexes property', () => {
+  beforeAll(() => {
+    game.currentPlayer = 'X';
+    gameBoard.fill(null);
+    game.occupiedIndexes = null;
+  });
+  it('Shows that the index of a cell marked with an X will have its index recorded', () => {
+    handleClickCell(0);
+    expect(game.occupiedIndexes).toEqual([0]);
+  });
+  it('Shows that the index of a cell marked with an O will have its index recorded', () => {
+    game.currentPlayer = 'O';
+    handleClickCell(2);
+    expect(game.occupiedIndexes).toEqual([2]);
+  });
+  it('Shows all indexes of cells marked with an X will have their indexes recorded', () => {
+    handleClickCell(1);
+    expect(game.occupiedIndexes).toEqual([0, 1]);
+  });
+  it('Shows all indexes of cells marked with an O will have their indexes recorded', () => {
+    game.currentPlayer = 'O';
+    handleClickCell(5);
+    expect(game.occupiedIndexes).toEqual([2, 5]);
   });
 });
