@@ -16,6 +16,7 @@ class Game {
     this.currentPlayer = 'X';
     this.winner = null;
     this.occupiedIndexes = null;
+    this.winningPosition = null;
   }
 
   markBoard(cellIndex) {
@@ -39,6 +40,17 @@ class Game {
       return occupiedIndexes;
     };
     this.occupiedIndexes = getOccupiedIndexes(this.currentPlayer);
+
+    const isInOccupiedIndexes = (number) => this.occupiedIndexes.includes(number);
+
+    const getWinningIndex = () => {
+      winningPositions.forEach((combination, index) => {
+        if (combination.every(isInOccupiedIndexes)) {
+          this.winningPosition = index;
+        }
+      });
+    };
+    getWinningIndex();
   }
 
   nextPlayer() {
