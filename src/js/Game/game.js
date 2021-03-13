@@ -15,6 +15,7 @@ class Game {
   constructor() {
     this.currentPlayer = 'X';
     this.winner = null;
+    this.occupiedIndexes = null;
   }
 
   markBoard(cellIndex) {
@@ -23,11 +24,11 @@ class Game {
 
   findWinner() {
     // Find all the positions that are occupied by the current player
-    const getOccupiedIndexes = () => {
+    const getOccupiedIndexes = (player) => {
       let i = 0;
       const occupiedIndexes = [];
       while (i < 9) {
-        const foundIndex = gameBoard.indexOf(this.currentPlayer, i);
+        const foundIndex = gameBoard.indexOf(player, i);
         if (foundIndex !== -1) {
           if (occupiedIndexes[occupiedIndexes.length - 1] !== foundIndex) {
             occupiedIndexes.push(foundIndex);
@@ -37,7 +38,7 @@ class Game {
       }
       return occupiedIndexes;
     };
-    this.occupiedIndexes = getOccupiedIndexes();
+    this.occupiedIndexes = getOccupiedIndexes(this.currentPlayer);
   }
 
   nextPlayer() {
