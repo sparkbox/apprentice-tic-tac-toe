@@ -92,12 +92,20 @@ describe('Mark cells without using the DOM', () => {
   });
 
   describe('Confirm marked cells are tracked in the occupied indexes property', () => {
-    afterAll(() => {
+    beforeEach(() => {
+      game.currentPlayer = 'X';
+      gameBoard.fill(null);
+      game.occupiedIndexes = null;
+    });
+    afterEach(() => {
       game.currentPlayer = 'X';
       game.occupiedIndexes = null;
-      gameBoard.forEach(() => null);
+      gameBoard.fill(null);
     });
-    it.todo('Shows that the index of a cell marked with an X will have its index recorded');
+    it('Shows that the index of a cell marked with an X will have its index recorded', () => {
+      handleClickCell(0);
+      expect(game.occupiedIndexes).toEqual([0]);
+    });
     it.todo('Shows that the index of a cell marked with an O will have its index recorded');
     it.todo('Shows all indexes of cells marked with an X will have their indexes recorded');
     it.todo('Shows all indexes of cells marked with an O will have their indexes recorded');
