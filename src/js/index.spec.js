@@ -117,3 +117,22 @@ describe('Confirm marked cells are tracked in the occupied indexes property', ()
     expect(game.occupiedIndexes).toEqual([2, 5]);
   });
 });
+
+describe('Confirm that winning positions can be detected', () => {
+  beforeAll(() => {
+    game.currentPlayer = 'X';
+    gameBoard.fill(null);
+    game.occupiedIndexes = null;
+    game.winningPosition = null;
+  });
+  it('Shows that a non-winning position will return a value of null', () => {
+    handleClickCell(3);
+    handleClickCell(2);
+    handleClickCell(0);
+    handleClickCell(5);
+    handleClickCell(7);
+    handleClickCell(6);
+    expect(game.winningPosition).toBe(null);
+  });
+  it.todo('Shows that a winning position will return its index in the winning positions array');
+});
