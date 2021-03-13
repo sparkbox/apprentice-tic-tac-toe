@@ -51,6 +51,14 @@ class Game {
       });
     };
     getWinningIndex();
+
+    const updateWinner = () => {
+      if (this.winningPosition !== null) {
+        this.winner = this.currentPlayer;
+      }
+    };
+
+    updateWinner();
   }
 
   nextPlayer() {
