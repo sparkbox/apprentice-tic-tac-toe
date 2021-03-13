@@ -153,4 +153,12 @@ describe('Correctly find game winners', () => {
     expect(game.winningPosition).toBe(5);
     expect(game.winner).toBe('O');
   });
+  it('Shows that X can be the winner', () => {
+    handleClickCell(0);
+    handleClickCell(3);
+    handleClickCell(1);
+    handleClickCell(4);
+    handleClickCell(2);
+    expect(game.winner).toBe('X');
+  });
 });
