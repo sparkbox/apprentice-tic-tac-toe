@@ -1,4 +1,4 @@
-class Game {
+export class Game {
   constructor() {
     this.currentPlayer = 'X';
     this.winner = null;
