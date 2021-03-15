@@ -1,5 +1,6 @@
+/* eslint-disable quotes */
 import jsdom from 'jsdom';
-import { handleClickCell, game } from './Game/game';
+import { handleClickCell, Game } from './Game/game';
 
 const { JSDOM } = jsdom;
 
@@ -15,6 +16,23 @@ function ticTacToeUI() {
 <div class="grid-cell util-no-bottom-border"></div>
 <div class="grid-cell util-no-bottom-border util-no-right-border"></div>
 </div>
+`);
+}
+
+function createSubheaderAndGrid() {
+  return new JSDOM(`
+  <h2 class="subheader"></h2>
+  <div class="game-grid">
+    <div class="grid-cell util-no-top-border util-no-left-border"></div>
+    <div class="grid-cell util-no-top-border"></div>
+    <div class="grid-cell util-no-top-border util-no-right-border"></div>
+    <div class="grid-cell util-no-left-border"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell util-no-right-border"></div>
+    <div class="grid-cell util-no-bottom-border util-no-left-border"></div>
+    <div class="grid-cell util-no-bottom-border"></div>
+    <div class="grid-cell util-no-bottom-border util-no-right-border"></div>
+  </div>
 `);
 }
 
@@ -75,4 +93,23 @@ describe('Toggling between Xs and Os', () => {
       });
     }
   }
+});
+
+describe.only('subheader text', () => {
+  // mock up h2 and mock up adding inner text
+  const subheaderDom = new JSDOM(`<h2 class="subheader"></h2>`);
+  const subheader = subheaderDom.window.document.querySelector('.subheader');
+  subheader.innerText = `It's X's turn`;
+  // mocking single grid cell
+  const gridCellDom = new JSDOM(`<div class="grid-cell"></div>`);
+  const gridCell = gridCellDom.window.document.querySelector('.grid-cell');
+  gridCell.addEventListener('click', () => { handleClickCell(gridCell, subheader); });
+  state.currentTurn = 'X';
+  it(`shows X's turn in subheader at the beginning of the game`, () => {
+    expect(subheader.innerText).toBe(`It's X's turn`);
+  });
+  it(`shows O's turn in subheader after first turn`, () => {
+    handleClickCell(gridCell, subheader);
+    expect(subheader.innerText).toBe(`It's O's turn`);
+  });
 });

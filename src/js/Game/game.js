@@ -1,4 +1,4 @@
-class Game {
+export class Game {
   constructor() {
     this.currentPlayer = 'X';
     this.winner = null;
@@ -10,11 +10,11 @@ class Game {
   }
 }
 
-export const game = new Game();
+const game = new Game();
 
-export function handleClickCell(cell) { // 68
+export function handleClickCell(cell, currGame = game) {
   if (cell.innerText) return;
   // eslint-disable-next-line no-param-reassign
-  cell.innerText = game.currentPlayer;
-  game.nextPlayer();
+  cell.innerText = currGame.currentPlayer;
+  currGame.nextPlayer();
 }
