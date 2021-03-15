@@ -20,6 +20,7 @@ export class Game {
 
 export const game = new Game();
 
+// probably move this out eventually
 export function handleClickCell(cell, index) {
   // eslint-disable-next-line no-param-reassign
   cell.innerText = game.currentPlayer; // this part manipulates the dom
