@@ -12,9 +12,13 @@ export class Game {
 
 const game = new Game();
 
-export function handleClickCell(cell, currGame = game) {
+export function handleClickCell(cell, subheading, currGame = game) {
   if (cell.innerText) return;
   // eslint-disable-next-line no-param-reassign
   cell.innerText = currGame.currentPlayer;
   currGame.nextPlayer();
+  if (subheading) {
+    // eslint-disable-next-line no-param-reassign
+    subheading.innerText = `It's ${currGame.currentPlayer}'s turn`;
+  }
 }

@@ -96,20 +96,31 @@ describe('Toggling between Xs and Os', () => {
 });
 
 describe.only('subheader text', () => {
-  // mock up h2 and mock up adding inner text
-  const subheaderDom = new JSDOM(`<h2 class="subheader"></h2>`);
-  const subheader = subheaderDom.window.document.querySelector('.subheader');
-  subheader.innerText = `It's X's turn`;
-  // mocking single grid cell
-  const gridCellDom = new JSDOM(`<div class="grid-cell"></div>`);
-  const gridCell = gridCellDom.window.document.querySelector('.grid-cell');
-  gridCell.addEventListener('click', () => { handleClickCell(gridCell, subheader); });
-  state.currentTurn = 'X';
+  let ticTacToeDom;
+  let game;
+  let allGridCells;
+  let subheader;
+  beforeEach(() => {
+    ticTacToeDom = createSubheaderAndGrid();
+    subheader = ticTacToeDom.window.document.querySelector('.subheader');
+    subheader.innerText = (`It's X's turn`);
+    game = new Game();
+    allGridCells = ticTacToeDom.window.document.querySelectorAll('.grid-cell');
+    addHandleClickListener(allGridCells, subheader, game);
+  });
   it(`shows X's turn in subheader at the beginning of the game`, () => {
     expect(subheader.innerText).toBe(`It's X's turn`);
   });
   it(`shows O's turn in subheader after first turn`, () => {
-    handleClickCell(gridCell, subheader);
+    const gridCell = ticTacToeDom.window.document.querySelector('.grid-cell');
+    gridCell.click();
     expect(subheader.innerText).toBe(`It's O's turn`);
+  });
+  it(`show's X's turn in subheader after two turns`, () => {
+    const firstGridCell = ticTacToeDom.window.document.querySelectorAll('.grid-cell')[0];
+    const secondGridCell = ticTacToeDom.window.document.querySelectorAll('.grid-cell')[1];
+    firstGridCell.click();
+    secondGridCell.click();
+    expect(subheader.innerText).toBe(`It's X's turn`);
   });
 });
