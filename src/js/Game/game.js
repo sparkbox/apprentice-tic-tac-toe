@@ -64,13 +64,14 @@ class Game {
 
 export const game = new Game();
 
-export function handleClickCell(cell) { // 68
+export function handleClickCell(cell, index) { // 68
   if (cell.className !== undefined) {
     // eslint-disable-next-line no-param-reassign
     cell.innerText = game.currentPlayer;
+    game.markBoard(index);
   } else {
     game.markBoard(cell);
-    game.findWinner();
   }
+  game.findWinner();
   game.nextPlayer();
 }
