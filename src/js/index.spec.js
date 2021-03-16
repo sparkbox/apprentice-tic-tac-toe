@@ -3,19 +3,23 @@ import { handleClickCell, game } from './Game/game';
 
 const { JSDOM } = jsdom;
 
-describe('Handle click cell function', () => {
-  const gridGame = new JSDOM(`<div class="game-grid">
-    <div class="grid-cell util-no-top-border util-no-left-border"></div>
-    <div class="grid-cell util-no-top-border"></div>
-    <div class="grid-cell util-no-top-border util-no-right-border"></div>
-    <div class="grid-cell util-no-left-border"></div>
-    <div class="grid-cell"></div>
-    <div class="grid-cell util-no-right-border"></div>
-    <div class="grid-cell util-no-bottom-border util-no-left-border"></div>
-    <div class="grid-cell util-no-bottom-border"></div>
-    <div class="grid-cell util-no-bottom-border util-no-right-border"></div>
-  </div>
+function ticTacToeUI() {
+  return new JSDOM(`<div class="game-grid">
+<div class="grid-cell util-no-top-border util-no-left-border"></div>
+<div class="grid-cell util-no-top-border"></div>
+<div class="grid-cell util-no-top-border util-no-right-border"></div>
+<div class="grid-cell util-no-left-border"></div>
+<div class="grid-cell"></div>
+<div class="grid-cell util-no-right-border"></div>
+<div class="grid-cell util-no-bottom-border util-no-left-border"></div>
+<div class="grid-cell util-no-bottom-border"></div>
+<div class="grid-cell util-no-bottom-border util-no-right-border"></div>
+</div>
 `);
+}
+
+describe('Handle click cell function', () => {
+  const gridGame = ticTacToeUI();
   // As there are multiple grid cell elements, this will only select the first one.
   const gridCell = gridGame.window.document.querySelector('.grid-cell');
   const allGameCells = gridGame.window.document.querySelectorAll('.grid-cell');
@@ -45,23 +49,13 @@ describe('Handle click cell function', () => {
     const click1 = gridCell;
     gridCell.click();
     const click2 = gridCell;
-    expect(click1.innerText).toBe(click2.innerText);
+    expect(click1.innerText).toEqual('X');
+    expect(click2.innerText).toEqual('X');
   });
 });
 
 describe('Toggling between Xs and Os', () => {
-  const gridGame = new JSDOM(`<div class="game-grid">
-    <div class="grid-cell util-no-top-border util-no-left-border"></div>
-    <div class="grid-cell util-no-top-border"></div>
-    <div class="grid-cell util-no-top-border util-no-right-border"></div>
-    <div class="grid-cell util-no-left-border"></div>
-    <div class="grid-cell"></div>
-    <div class="grid-cell util-no-right-border"></div>
-    <div class="grid-cell util-no-bottom-border util-no-left-border"></div>
-    <div class="grid-cell util-no-bottom-border"></div>
-    <div class="grid-cell util-no-bottom-border util-no-right-border"></div>
-  </div>
-`);
+  const gridGame = ticTacToeUI();
   // As there are multiple grid cell elements, this will only select the first one.
   const allGameCells = gridGame.window.document.querySelectorAll('.grid-cell');
   allGameCells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell); }));
