@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import express from 'express';
 import path from 'path';
+import pkg from './package.json';
 
 const app = express();
 const PORT = 3000;
@@ -8,6 +9,12 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, 'src')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'src/html/index.html'));
+});
+
+app.get('/version', (req, res) => {
+  res.json(
+    pkg.version,
+  );
 });
 
 app.use((req, res) => {

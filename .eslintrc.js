@@ -14,6 +14,10 @@ module.exports = {
     'no-console': 'off',
     'no-debugger': 'off',
   },
+  globals: {
+    fetch: false,
+    document: false,
+  },
   overrides: [
     {
       files: [
