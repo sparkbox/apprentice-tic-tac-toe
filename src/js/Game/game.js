@@ -5,6 +5,10 @@ export class Game {
     this.gameBoard = new Array(9).fill(null);
   }
 
+  markBoard(index) {
+    this.gameBoard[index] = this.currentPlayer;
+  }
+
   nextPlayer() {
     const result = this.currentPlayer === 'X' ? 'O' : 'X';
     this.currentPlayer = result;
