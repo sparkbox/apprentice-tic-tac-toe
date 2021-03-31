@@ -1,0 +1,143 @@
+/* eslint-disable quotes */
+import jsdom from 'jsdom';
+import Game from '../Game/game';
+import handleClickCell from './handleClickCell';
+
+const { JSDOM } = jsdom;
+
+// helper function to create the mock tic-tac-toe UI used in the tests
+function createTicTacToeUI() {
+  return new JSDOM(`
+  <h2 class="subheader"></h2>
+  <div class="game-grid">
+    <div class="grid-cell util-no-top-border util-no-left-border"></div>
+    <div class="grid-cell util-no-top-border"></div>
+    <div class="grid-cell util-no-top-border util-no-right-border"></div>
+    <div class="grid-cell util-no-left-border"></div>
+    <div class="grid-cell"></div>
+    <div class="grid-cell util-no-right-border"></div>
+    <div class="grid-cell util-no-bottom-border util-no-left-border"></div>
+    <div class="grid-cell util-no-bottom-border"></div>
+    <div class="grid-cell util-no-bottom-border util-no-right-border"></div>
+  </div>
+`);
+}
+
+// helper function to add event listeners to cells
+function addHandleClickListener(cells, subheader, game) {
+  cells.forEach((cell, index) => cell.addEventListener('click', () => { handleClickCell(cell, subheader, index, game); }));
+}
+
+describe('Handle click cell function', () => {
+  let gridGame;
+  let game;
+  let singleGridCell;
+  let allGridCells;
+  let subheader; // not ever defined or used, but needed to pass into handleClickCell
+  beforeEach(() => {
+    gridGame = createTicTacToeUI();
+    game = new Game();
+    // As there are multiple grid cell elements, this will only select the first one.
+    singleGridCell = gridGame.window.document.querySelector('.grid-cell');
+    allGridCells = gridGame.window.document.querySelectorAll('.grid-cell');
+    addHandleClickListener(allGridCells, subheader, game);
+  });
+  it('Shows an empty grid cell before any choices have been made', () => {
+    expect(singleGridCell.textContent).toBe('');
+  });
+  it('Marks a grid cell with an "X" using the handleClickCell function directly', () => {
+    handleClickCell(singleGridCell, subheader, 0, game);
+    expect(singleGridCell.innerText).toBe('X');
+  });
+  it('Marks a grid cell with an "X" by clicking', () => {
+    singleGridCell.click();
+    expect(singleGridCell.innerText).toBe('X');
+  });
+  it('Does not mark a grid that has been marked already', () => {
+    singleGridCell.click();
+    const click1GridContent = singleGridCell.innerText;
+    singleGridCell.click();
+    const click2GridContent = singleGridCell.innerText;
+    expect(click1GridContent).toEqual('X');
+    expect(click2GridContent).toEqual('X');
+  });
+});
+
+describe('Toggling between Xs and Os', () => {
+  const gridGame = createTicTacToeUI();
+  const game = new Game();
+  const allGridCells = gridGame.window.document.querySelectorAll('.grid-cell');
+  let subheader; // not ever defined or used, but needed to pass into handleClickCell
+  addHandleClickListener(allGridCells, subheader, game);
+  // The following for loop will go through and click each cell in the game grid.
+  // It will click each cell only once, so a cell will go from blank to either an X or an O,
+  // depending on whether the click is even (0, 2, 4, 6, 8) or odd (1, 3, 5, 7).
+  for (let i = 0; i < allGridCells.length; i += 1) {
+    allGridCells[i].click(); // Simulate clicking each cell in order from index 0 to 8
+    // As indexes are zero based, zero will be counted as even.
+    if (i % 2 === 0) {
+      it(`Shows that a click on a previously unclicked cell will produce an x if said click is an even number (click #${i})`, () => {
+        expect(allGridCells[i].innerText).toBe('X');
+      });
+    } else {
+      it(`Shows that a click on a previously unclicked cell will produce an o if said click is an odd number (click #${i})`, () => {
+        expect(allGridCells[i].innerText).toBe('O');
+      });
+    }
+  }
+});
+
+describe('subheader text', () => {
+  let gridGame;
+  let game;
+  let allGridCells;
+  let subheader;
+  beforeEach(() => {
+    gridGame = createTicTacToeUI();
+    subheader = gridGame.window.document.querySelector('.subheader');
+    subheader.innerText = (`It's X's turn`);
+    game = new Game();
+    allGridCells = gridGame.window.document.querySelectorAll('.grid-cell');
+    addHandleClickListener(allGridCells, subheader, game);
+  });
+  it(`shows X's turn in subheader at the beginning of the game`, () => {
+    expect(subheader.innerText).toBe(`It's X's turn`);
+  });
+  it(`shows O's turn in subheader after first turn`, () => {
+    const gridCell = gridGame.window.document.querySelector('.grid-cell');
+    gridCell.click();
+    expect(subheader.innerText).toBe(`It's O's turn`);
+  });
+  it(`show's X's turn in subheader after two turns`, () => {
+    const firstGridCell = gridGame.window.document.querySelectorAll('.grid-cell')[0];
+    const secondGridCell = gridGame.window.document.querySelectorAll('.grid-cell')[1];
+    firstGridCell.click();
+    secondGridCell.click();
+    expect(subheader.innerText).toBe(`It's X's turn`);
+  });
+});
+
+describe('Expect changes in the UI to be reflected in our game object', () => {
+  const gridGame = createTicTacToeUI();
+  const game = new Game();
+  const allGridCells = gridGame.window.document.querySelectorAll('.grid-cell');
+  let subheader;
+  addHandleClickListener(allGridCells, subheader, game);
+  it('Return the empty squares for the UI and the empty game object', () => {
+    allGridCells.forEach((cell) => expect(cell.innerText).toBe(undefined));
+    expect(game.gameBoard).toStrictEqual([null, null, null, null,
+      null, null, null, null, null]);
+  });
+  it('Mark one square with an X and see that the matching cell in the game object has an X', () => {
+    allGridCells[1].click();
+    expect(allGridCells[1].innerText).toBe('X');
+    expect(game.gameBoard).toStrictEqual([null, 'X', null, null,
+      null, null, null, null, null]);
+  });
+  it('Mark one square with an O and see that the matching cell in the game object has an O', () => {
+    allGridCells[0].click();
+    expect(allGridCells[0].innerText).toBe('O');
+    expect(game.gameBoard).toStrictEqual(['O', 'X', null, null,
+      null, null, null, null, null]);
+  });
+});
