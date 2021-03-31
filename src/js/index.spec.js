@@ -138,9 +138,4 @@ describe('Show the current version number', () => {
   });
 });
 
-describe('Use the game board to mark spaces', () => {
-  const gameWithBoard = new Game()
-  it('Shows a game board before anything has been selected', () => {
-    expect(gameWithBoard.gameBoard).toStrictEqual([null, null, null, null, null, null, null, null, null]);
-  })
-})
+
