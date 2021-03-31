@@ -10,7 +10,7 @@ const subheader = document.querySelector('.subheader');
 subheader.innerText = (`It's X's turn`);
 // eslint-disable-next-line no-undef
 const allGameCells = document.querySelectorAll('.grid-cell');
-allGameCells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell, subheader); }));
+allGameCells.forEach((cell, index) => cell.addEventListener('click', () => { handleClickCell(cell, subheader, index); }));
 
 const appVersion = document.querySelector('.app-version_version');
 

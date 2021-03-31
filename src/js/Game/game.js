@@ -17,10 +17,11 @@ export class Game {
 
 const game = new Game();
 
-export function handleClickCell(cell, subheading, currGame = game) {
+export function handleClickCell(cell, subheading, index, currGame = game) {
   if (cell.innerText) return;
   // eslint-disable-next-line no-param-reassign
   cell.innerText = currGame.currentPlayer;
+  currGame.markBoard(index);
   currGame.nextPlayer();
   if (subheading) {
     // eslint-disable-next-line no-param-reassign

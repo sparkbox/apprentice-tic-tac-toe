@@ -28,7 +28,7 @@ function createTicTacToeUI() {
 
 // helper function to add event listeners to cells
 function addHandleClickListener(cells, subheader, game) {
-  cells.forEach((cell) => cell.addEventListener('click', () => { handleClickCell(cell, subheader, game); }));
+  cells.forEach((cell, index) => cell.addEventListener('click', () => { handleClickCell(cell, subheader, index, game); }));
 }
 
 describe('Handle click cell function', () => {
@@ -49,7 +49,7 @@ describe('Handle click cell function', () => {
     expect(singleGridCell.textContent).toBe('');
   });
   it('Marks a grid cell with an "X" using the handleClickCell function directly', () => {
-    handleClickCell(singleGridCell, subheader, game);
+    handleClickCell(singleGridCell, subheader, 0, game);
     expect(singleGridCell.innerText).toBe('X');
   });
   it('Marks a grid cell with an "X" by clicking', () => {
