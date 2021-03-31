@@ -2,6 +2,7 @@ export class Game {
   constructor() {
     this.currentPlayer = 'X';
     this.winner = null;
+    this.gameBoard = new Array(9).fill(null);
   }
 
   nextPlayer() {
