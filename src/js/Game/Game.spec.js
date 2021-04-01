@@ -8,7 +8,7 @@ describe('Use the game board to mark spaces', () => {
   });
 
   it('Marks the space with current player', () => {
-    const markedBoard = gameWithBoard.markBoard(1);
+    gameWithBoard.markBoard(1);
     expect(gameWithBoard.gameBoard).toStrictEqual([null, 'X', null, null,
       null, null, null, null, null]);
   });
