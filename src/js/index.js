@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import Game from './Game/game.js';
-import handleClickCell from './HandleClick/handleClickCell.js'
+import handleClickCell from './HandleClick/handleClickCell.js';
 import { updateVersionNumber } from './version.js';
 // eslint-disable-next-line no-undef
 const subheader = document.querySelector('.subheader');
