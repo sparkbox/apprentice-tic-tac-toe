@@ -1,7 +1,8 @@
 /* eslint-disable quotes */
 import { enableFetchMocks } from 'jest-fetch-mock';
 import jsdom from 'jsdom';
-import { handleClickCell, Game } from './Game/game';
+import Game from './Game/game';
+import handleClickCell from './HandleClick/handleClickCell';
 import { getVersionNumber, updateVersionNumber } from './version';
 
 enableFetchMocks();
