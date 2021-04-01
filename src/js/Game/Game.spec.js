@@ -1,4 +1,4 @@
-import { Game } from './game';
+import Game from './game';
 
 describe('Use the game board to mark spaces', () => {
   const gameWithBoard = new Game();
