@@ -137,5 +137,3 @@ describe('Show the current version number', () => {
     expect(appVersion.innerText).toBe('1.0.0');
   });
 });
-
-
