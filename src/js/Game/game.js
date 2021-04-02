@@ -1,8 +1,20 @@
 export default class Game {
   constructor() {
-    this.currentPlayer = 'X';
-    this.winner = null;
-    this.gameBoard = new Array(9).fill(null);
+    this._currentPlayer = 'X';
+    this._winner = null;
+    this._gameBoard = new Array(9).fill(null);
+  }
+
+  get currentPlayer() {
+    return this._currentPlayer;
+  }
+
+  set currentPlayer(newPlayer) {
+    this._currentPlayer = newPlayer;
+  }
+
+  get gameBoard() {
+    return this._gameBoard;
   }
 
   markBoard(index) {
